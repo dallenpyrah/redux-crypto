@@ -1,29 +1,26 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+
+import React, { useEffect } from 'react'
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import '../App.css';
+import { getCoinById, selectActiveCoin } from '../features/coins/coinSlice';
 export default function ActiveCoinPage(){
     let { id } = useParams()
-    const [coin, setCoin] = useState([])
-    const { name, market_data } = coin;
+    const coin = useSelector(selectActiveCoin)
+    const dispatch = useDispatch()
 
-    const fetchCoin = async (id) => {
-        const res = await axios.get('https://api.coingecko.com/api/v3/coins/' + id)
-        console.log(res.data)
-        setCoin(res.data)
-        console.log(coin)
-    }
     useEffect(() => {
-        fetchCoin(id)
-      }, []);
+        dispatch(getCoinById(id))
+      }, [dispatch, id]);
     
     return (
         <Container fluid>
             <Row className="justify-content-center">
-                <Col className="" sm={3}>
-                    {name}
-                    {market_data.current_price.usd}
+                <Col className="text-light" sm={8}>
+                    <Card className="back-dark">
+                        <h1 className="mt-5 back-dark">{coin.name}</h1>
+                    </Card>
                 </Col>
             </Row>
         </Container>

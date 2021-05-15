@@ -4,16 +4,15 @@ import { Col, Container, Form, Row } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Coin from '../Coin';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCoins, selectAllCoins } from '../features/coins/coinSlice';
 export default function Homepage(){
-    const [coins, setCoin] = useState([])
-
+    const coins = useSelector(selectAllCoins)
+    const dispatch = useDispatch()
     const [search, setSearch] = useState('')
     useEffect(() => { 
-      axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false').then(res => {
-        setCoin(res.data)
-        console.log(res.data)
-      }).catch(error => console.log(error))
-    }, [])
+      dispatch(getAllCoins())
+    }, [dispatch])
   
     const handleChange = e => {
       setSearch(e.target.value)
