@@ -17,9 +17,39 @@ export default function ActiveCoinPage(){
     return (
         <Container fluid>
             <Row className="justify-content-center">
-                <Col className="text-light" sm={8}>
-                    <Card className="back-dark">
-                        <h1 className="mt-5 back-dark">{coin.name}</h1>
+                <Col className="text-light" sm={5}>
+                    <Card className="back-dark p-4">
+                        <Row className="back-dark justify-content-center">
+                        <img width="75px" className="back-dark" src={coin.image.large} alt=""/>
+                        <h1 className="mt-3 ml-4 back-dark">{coin.name}</h1>
+                        </Row>
+                    </Card>
+                </Col>
+            </Row>
+            <Row className="mt-5">
+                <Col>
+                    <Card>
+                        
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        
                     </Card>
                 </Col>
             </Row>
