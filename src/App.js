@@ -1,58 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Coinpage from './pages/Coinpage';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import { Nav, Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import Homepage from './pages/Homepage';
+// import ActiveCoinPage from './pages/ActiveCoinPage';
+import CoinDetailsPage from './pages/CoinDetailsPage'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Router>
+        <Navbar className="ml-3" bg="" variant="dark">
+        <Navbar.Brand href="#home" className="ml-3 text-primary">BIKOJO</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link>
+            <Link className="nav-link" to="/">Home</Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link className="nav-link" to="/coins">Coins</Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link className="nav-link" to="/">News</Link>
+          </Nav.Link>
+        </Nav>
+      </Navbar>
+      <Switch>
+      <Route path='/coin/:id' component={CoinDetailsPage} exact />
+        <Route path='/coins' component={Coinpage} exact />
+        <Route path='/' component={Homepage} exact />
+      </Switch>
+    </Router>
   );
 }
-
 export default App;
